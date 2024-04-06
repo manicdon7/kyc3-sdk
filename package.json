@@ -3,13 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ethersproject/contracts": "^5.7.0",
+    "@metamask/sdk-react-ui": "^0.18.0",
+    "@rainbow-me/rainbowkit": "^2.0.5",
+    "@tanstack/react-query": "^5.29.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "alchemy-sdk": "^3.2.1",
+    "all": "^0.0.0",
+    "ethers": "^5.7.2",
+    "ethersjs": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "viem": "^2.9.9",
+    "wagmi": "^2.5.19",
+    "web-vitals": "^2.1.4",
+    "web3": "^4.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
