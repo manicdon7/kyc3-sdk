@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { submitKYC, getKYCDetails, getAllKYCData } from './ContractIntegration';
+import { submitKYC, getKYCDetails, getAllKYCData, verifyKYC } from './ContractIntegration';
 import Connect from './components/Connect';
 import { ethers }from 'ethers';
 import Abi from './abi/abi.json'
@@ -23,7 +23,7 @@ const App = () => {
         const balance = await provider.getBalance(address);
         setAddress(address);
         //setBalance(ethers?.utils?.parseEther(balance));
-        const myContractAddress = "0x2B1AA524Ff41F6816Cb338788dE632107889321A";
+        const myContractAddress = "0x05e1fF1912864803874012D7E6003FC22905cfFc";
         const contract = new ethers.Contract(
           myContractAddress,
           Abi,
@@ -52,11 +52,25 @@ const App = () => {
         console.error('Contract is not initialized.');
         return;
       }
-      const records = await getAllKYCData(contract); // Ensure contract is passed as an argument
+      const signerAddress = await contract.signer.getAddress(); // Get signer address
+      const records = await getAllKYCData(contract, signerAddress);
       setKYCRecords(records);
       console.log('All KYC Data:', records);
     } catch (error) {
       console.error('Error getting all KYC data:', error);
+    }
+  };
+
+  const handleVerifyKYC = async (index) => {
+    try {
+      if (!contract) {
+        console.error('Contract is not initialized.');
+        return;
+      }
+      await verifyKYC(contract, index);
+      console.log('KYC verified successfully.');
+    } catch (error) {
+      console.error('Error verifying KYC:', error);
     }
   };
 
@@ -78,6 +92,9 @@ const App = () => {
               <p>Name: {record[1]}</p>
               <p>User ID: {record[2]}</p>
               <p>Verified: {record[3].toString()}</p>
+      <div>
+          <button onClick={() => handleVerifyKYC(index)}>Verify KYC</button>
+        </div>
             </li>
           ))}
         </ul>

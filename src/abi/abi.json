@@ -56,6 +56,41 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getAllKYCData",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "userId",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "verified",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct KYCVerification.KYCData[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",

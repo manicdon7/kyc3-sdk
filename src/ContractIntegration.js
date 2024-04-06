@@ -7,10 +7,17 @@ export async function submitKYC(contract, name, userId) {
   await submitTx.wait();
 }
 
+
 export async function getKYCDetails(contract, index) {
   return await contract.getKYCDetails(index);
 }
 
-export async function getAllKYCData(contract) {
-  return await contract.getAllKYCData();
+export async function getAllKYCData(contract, signerAddress) {
+  const signerKYCs = await contract.getKYCDataBySigner(signerAddress);
+  return signerKYCs;
+}
+
+export async function verifyKYC(contract, index) {
+  const verifyTx = await contract.verifyKYC(index);
+  await verifyTx.wait();
 }

@@ -12,7 +12,9 @@ import {
   mainnet,
   optimism,
   polygon,
+  polygonMumbai,
   sepolia,
+  xdcTestnet,
 } from 'wagmi/chains';
 
 import App from './App';
@@ -24,10 +26,12 @@ const config = getDefaultConfig({
   chains: [
     mainnet,
     polygon,
+    polygonMumbai,
     optimism,
     arbitrum,
     base,
     sepolia,
+    xdcTestnet,
     ...(process.env.REACT_APP_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
   ],
 });
