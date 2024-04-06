@@ -12,7 +12,7 @@ export async function getKYCDetails(contract, index) {
   return await contract.getKYCDetails(index);
 }
 
-export async function getAllKYCData(contract, signerAddress) {
+export async function getKYCDataBySigner(contract, signerAddress) {
   const signerKYCs = await contract.getKYCDataBySigner(signerAddress);
   return signerKYCs;
 }
@@ -20,4 +20,14 @@ export async function getAllKYCData(contract, signerAddress) {
 export async function verifyKYC(contract, index) {
   const verifyTx = await contract.verifyKYC(index);
   await verifyTx.wait();
+}
+
+export async function getAllKYCData(contract) {
+  try {
+    const kycRecords = await contract.getAllKYCData();
+    return kycRecords;
+  } catch (error) {
+    console.error('Error fetching all KYC data:', error);
+    throw error;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { submitKYC, getKYCDetails, getAllKYCData, verifyKYC } from './ContractIntegration';
+import { submitKYC, getKYCDetails, getKYCDataBySigner, verifyKYC, getAllKYCData } from './ContractIntegration';
 import Connect from './components/Connect';
 import { ethers }from 'ethers';
 import Abi from './abi/abi.json'
@@ -23,7 +23,7 @@ const App = () => {
         const balance = await provider.getBalance(address);
         setAddress(address);
         //setBalance(ethers?.utils?.parseEther(balance));
-        const myContractAddress = "0x05e1fF1912864803874012D7E6003FC22905cfFc";
+        const myContractAddress = "0xA008C9f80F637E865B93554939d37FF69136A0E3";
         const contract = new ethers.Contract(
           myContractAddress,
           Abi,
@@ -46,14 +46,14 @@ const App = () => {
     }
   };
 
-  const handleGetAllKYCData = async () => {
+  const handleGetKYCDataBySigner = async () => {
     try {
       if (!contract) {
         console.error('Contract is not initialized.');
         return;
       }
       const signerAddress = await contract.signer.getAddress(); // Get signer address
-      const records = await getAllKYCData(contract, signerAddress);
+      const records = await getKYCDataBySigner(contract, signerAddress);
       setKYCRecords(records);
       console.log('All KYC Data:', records);
     } catch (error) {
@@ -74,17 +74,32 @@ const App = () => {
     }
   };
 
+  const handleGetAllKYCData = async () => {
+    try {
+      if (!contract) {
+        console.error('Contract is not initialized.');
+        return;
+      }
+      const records = await getAllKYCData(contract);
+      setKYCRecords(records);
+      console.log('All KYC Data:', records);
+    } catch (error) {
+      console.error('Error getting all KYC data:', error);
+    }
+  };
+  
   return (
     <div>
       <Connect />
       <h1>KYC Verification App</h1>
+      <button onClick={handleGetAllKYCData}>Get All KYC Data</button>
       <div>
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" placeholder="User ID" value={userId} onChange={(e) => setUserId(e.target.value)} />
         <button onClick={handleSubmitKYC}>Submit KYC</button>
       </div>
       <div>
-        <button onClick={() => handleGetAllKYCData()}>Get All KYC Data</button>
+        <button onClick={() => handleGetKYCDataBySigner()}>Get KYC Data By Signer</button>
         <ul>
           {kycRecords.map((record, index) => (
             <li key={index}>
