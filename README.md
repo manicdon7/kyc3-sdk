@@ -34,4 +34,14 @@ The KYC3 SDK offers developers a powerful toolset for implementing KYC verificat
 
 To get started with the KYC3 SDK, follow the instructions in the documentation provided. Feel free to explore the code samples and integrate them into your application to implement KYC verification seamlessly.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://chat.openai.com/c/LICENSE.md) file for details.
+
+## Developers
+
+- Mani Kandan (manicdon7@gmail.com)
+- Kuxhanthai velu (kuzhanthaivel272@gmail.com)
+- Kiran (kirandev2210@gmail.com)
+
 Happy coding! 🚀
