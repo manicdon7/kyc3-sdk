@@ -13,6 +13,7 @@
             Abi,
             signer
           );
+          console.log(contract);
           return { provider, signer, address, contract };
         } else {
           throw new Error("MetaMask not found");
