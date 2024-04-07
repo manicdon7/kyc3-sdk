@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+Welcome to KYC3: A Guide to Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The KYC3 SDK (Software Development Kit) provides developers with a convenient way to interact with the KYCVerification smart contract deployed on the blockchain. With this SDK, developers can seamless
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+KYC3 SDK Overview
+The KYC3 SDK provides developers with a powerful toolset for implementing robust KYC verification processes in their applications. By leveraging blockchain technology, developers can ensure compliance, enhance security, and streamline user verification processes, ultimately building trust with their users and stakeholders. Get started with the KYC3 SDK today and take your application's KYC verification to the next level.
+Main components
+Struct Definition: The KYCData struct defines the structure of KYC records, including the signer's address, name, user ID, and verification status.
+State Variables:
+kycRecords: An array to store all KYC records.
+hasSubmittedKYC: A mapping to keep track of whether a user has already submitted KYC.
+userIdExists: A mapping to check whether a user ID already exists.
+userIdToAddress: A mapping to retrieve the address associated with a user ID.
+Events:
+KYCVerified: An event emitted when KYC data is successfully submitted.
+Functions:
+submitKYC: Allows users to submit their KYC data.
+verifyKYC: Allows the designated signer to verify KYC submissions.
+getKYCDetails: Retrieves KYC details based on the index.
+getKYCDataBySigner: Retrieves all KYC data submitted by a specific signer.

@@ -23,7 +23,7 @@ const App = () => {
         const balance = await provider.getBalance(address);
         setAddress(address);
         //setBalance(ethers?.utils?.parseEther(balance));
-        const myContractAddress = "0xA008C9f80F637E865B93554939d37FF69136A0E3";
+        const myContractAddress = "0xDF203bE9AC56E75599A75417EbEA005ef6580cfb";
         const contract = new ethers.Contract(
           myContractAddress,
           Abi,

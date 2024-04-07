@@ -18,7 +18,7 @@ export async function getKYCDataBySigner(contract, signerAddress) {
 }
 
 export async function verifyKYC(contract, index) {
-  const verifyTx = await contract.verifyKYC(index);
+  const verifyTx = await contract.verifyKYC(index, { gasLimit: 500000 });
   await verifyTx.wait();
 }
 
