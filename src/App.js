@@ -1,36 +1,27 @@
+
 import React, { useState, useEffect } from 'react';
-import { submitKYC, getKYCDetails, getKYCDataBySigner, verifyKYC, getAllKYCData } from './ContractIntegration';
 import Connect from './components/Connect';
-import { ethers }from 'ethers';
-import Abi from './abi/abi.json'
+import { initializeContract, submitKYC, getKYCDetails, getAllKYCData, verifyKYC, getKYCDataBySigner } from './ContractIntegration';
 
 const App = () => {
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [address, setAddress] = useState(null);
   const [contract, setContract] = useState(null);
-  const [address, setAddress] = useState([]);
   const [name, setName] = useState('');
   const [userId, setUserId] = useState('');
   const [kycRecords, setKYCRecords] = useState([]);
 
   useEffect(() => {
     async function initialize() {
-      if (typeof window.ethereum !== "undefined") {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        console.log(provider);
-        const signer = provider.getSigner();
-        console.log(signer);
-        const address = await signer.getAddress();
-        console.log(address)
-        const balance = await provider.getBalance(address);
+      try {
+        const { provider, signer, address, contract } = await initializeContract();
+        setProvider(provider);
+        setSigner(signer);
         setAddress(address);
-        //setBalance(ethers?.utils?.parseEther(balance));
-        const myContractAddress = "0xDF203bE9AC56E75599A75417EbEA005ef6580cfb";
-        const contract = new ethers.Contract(
-          myContractAddress,
-          Abi,
-          signer
-        );
-        console.log(contract);
         setContract(contract);
+      } catch (error) {
+        console.error('Error initializing contract:', error);
       }
     }
     initialize();
@@ -52,7 +43,7 @@ const App = () => {
         console.error('Contract is not initialized.');
         return;
       }
-      const signerAddress = await contract.signer.getAddress(); // Get signer address
+      const signerAddress = await contract.signer.getAddress();
       const records = await getKYCDataBySigner(contract, signerAddress);
       setKYCRecords(records);
       console.log('All KYC Data:', records);
